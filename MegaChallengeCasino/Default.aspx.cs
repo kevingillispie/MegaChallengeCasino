@@ -48,25 +48,23 @@ namespace MegaChallengeCasino
             if (betBoxResult)
             {
                 bet = int.Parse(betBox);
-                money = int.Parse(moneyLabel.Text);
-                money = money - bet;
-                moneyLabel.Text = money.ToString();
-
+                CheckBetBox();
                 RandomImage();
-                CalcReelValue();
+                CalcReelValueIf1();
                 WinOrLose();
-
-                bet = bet * reelValue;
-                money = money + bet;
-
-                moneyLabel.Text = money.ToString();
-                betTextBox.Text = "";
-                return;
             }
             else return;
         }
 
-        public void CalcReelValue()
+        public void CheckBetBox()
+        {
+            money = int.Parse(moneyLabel.Text);
+            money = money - bet;
+            moneyLabel.Text = money.ToString();
+            return;
+        }
+
+        public void CalcReelValueIf1()
         {
             if (reelsImageMap1.ImageUrl == "/images/Bar.png" ||
                 reelsImageMap2.ImageUrl == "/images/Bar.png" ||
@@ -75,35 +73,54 @@ namespace MegaChallengeCasino
                 reelValue = 0;
                 return;
             }
-            else if (reelsImageMap1.ImageUrl == "/images/Seven.png" &&
+            else CalcReelValueIf2();
+        }
+
+        public void CalcReelValueIf2()
+        {
+            if (reelsImageMap1.ImageUrl == "/images/Seven.png" &&
                 reelsImageMap2.ImageUrl == "/images/Seven.png" &&
                 reelsImageMap3.ImageUrl == "/images/Seven.png")
             {
                 reelValue = 100;
                 return;
             }
-            else if (reelsImageMap1.ImageUrl == "/images/Cherry.png" ||
-                reelsImageMap2.ImageUrl == "/images/Cherry.png" ||
-                reelsImageMap3.ImageUrl == "/images/Cherry.png")
-            {
-                reelValue = 2;
-                return;
-            } 
-            else if ((reelsImageMap1.ImageUrl == "/images/Cherry.png" && reelsImageMap2.ImageUrl == "/images/Cherry.png") ||
-                (reelsImageMap1.ImageUrl == "/images/Cherry.png" && reelsImageMap3.ImageUrl == "/images/Cherry.png") ||
-                reelsImageMap2.ImageUrl == "/images/Cherry.png" && reelsImageMap3.ImageUrl == "/images/Cherry.png")
-            {
-                reelValue = 3;
-                return;
-            }  
-            else if (reelsImageMap1.ImageUrl == "/images/Cherry.png" &&
+            else CalcReelValueIf3();
+        }
+
+        public void CalcReelValueIf3()
+        {
+            if (reelsImageMap1.ImageUrl == "/images/Cherry.png" &&
                 reelsImageMap2.ImageUrl == "/images/Cherry.png" &&
                 reelsImageMap3.ImageUrl == "/images/Cherry.png")
             {
                 reelValue = 4;
                 return;
             }
-                
+            else CalcReelValueIf4();
+        }
+
+        public void CalcReelValueIf4()
+        {
+            if ((reelsImageMap1.ImageUrl == "/images/Cherry.png" && reelsImageMap2.ImageUrl == "/images/Cherry.png") ||
+                (reelsImageMap1.ImageUrl == "/images/Cherry.png" && reelsImageMap3.ImageUrl == "/images/Cherry.png") ||
+                reelsImageMap2.ImageUrl == "/images/Cherry.png" && reelsImageMap3.ImageUrl == "/images/Cherry.png")
+            {
+                reelValue = 3;
+                return;
+            }
+            else CalcReelValueIf5();
+        }
+
+        public void CalcReelValueIf5()
+        {
+            if (reelsImageMap1.ImageUrl == "/images/Cherry.png" ||
+                reelsImageMap2.ImageUrl == "/images/Cherry.png" ||
+                reelsImageMap3.ImageUrl == "/images/Cherry.png") 
+            {
+                reelValue = 2;
+                return;
+            }
             else reelValue = 0;
         }
 
@@ -112,13 +129,22 @@ namespace MegaChallengeCasino
             if (reelValue == 0)
             {
                 winOrLoseLabel.Text = "Sorry, you lost $" + bet + ". Better luck next time!";
-                return;
             }
             else
             {
                 winOrLoseLabel.Text = "You bet $" + bet + " and won $" + (bet = bet * reelValue) + "!";
-                return;
             }
+            CalcWinLossValue();
+            return;
+        }
+
+        public void CalcWinLossValue()
+        {
+            bet = bet * reelValue;
+            money = money + bet
+            moneyLabel.Text = money.ToString();
+            betTextBox.Text = "";
+            return;
         }
     }
 }
