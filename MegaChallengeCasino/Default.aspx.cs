@@ -141,7 +141,7 @@ namespace MegaChallengeCasino
         public void CalcWinLossValue()
         {
             bet = bet * reelValue;
-            money = money + bet
+            money = money + bet;
             moneyLabel.Text = money.ToString();
             betTextBox.Text = "";
             return;
