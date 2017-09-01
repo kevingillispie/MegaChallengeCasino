@@ -59,7 +59,7 @@ namespace MegaChallengeCasino
         public void CheckBetBox()
         {
             money = int.Parse(moneyLabel.Text);
-            money = money - bet;
+            money -= bet;
             moneyLabel.Text = money.ToString();
             return;
         }
@@ -141,7 +141,7 @@ namespace MegaChallengeCasino
         public void CalcWinLossValue()
         {
             bet = bet * reelValue;
-            money = money + bet;
+            money += bet;
             moneyLabel.Text = money.ToString();
             betTextBox.Text = "";
             return;
