@@ -75,10 +75,30 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="images\Bar.png" />
+    <Content Include="images\Bell.png" />
+    <Content Include="images\Cherry.png" />
+    <Content Include="images\Clover.png" />
+    <Content Include="images\Diamond.png" />
+    <Content Include="images\HorseShoe.png" />
+    <Content Include="images\Lemon.png" />
+    <Content Include="images\Orange.png" />
+    <Content Include="images\Plum.png" />
+    <Content Include="images\Seven.png" />
+    <Content Include="images\Strawberry.png" />
+    <Content Include="images\Watermellon.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
